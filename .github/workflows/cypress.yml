@@ -7,7 +7,15 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 21]
+    name: E2E on Node v${{ matrix.node }}
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cypress run
