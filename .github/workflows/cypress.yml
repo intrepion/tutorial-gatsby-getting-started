@@ -6,11 +6,12 @@ on:
     branches: [ "main" ]
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [18, 20, 21]
-    name: E2E on Node v${{ matrix.node }}
+        os: [ ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.os }}
+    name: E2E on ${{ matrix.os }} using Node ${{ matrix.node }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
