@@ -1,4 +1,4 @@
-name: With server
+name: After server responds
 on:
   push:
     branches: [ "main" ]
@@ -14,3 +14,5 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm start
+          # quote the url to be safe against YML parsing surprises
+          wait-on: 'http://localhost:8000'
